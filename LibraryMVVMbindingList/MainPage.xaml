@@ -15,11 +15,17 @@
     
     <Grid>
         <StackPanel Orientation="Vertical">
-            <ListView ItemsSource="{Binding Books}" SelectedItem="{Binding SelectedBook, Mode=TwoWay}">
+            <ListView ItemsSource="{Binding Books, Mode=TwoWay}" SelectedItem="{Binding SelectedBook, Mode=TwoWay}">
                 <ListView.ItemTemplate >
                     <DataTemplate>
                         <!-- 'styler' elementer i listen -->
-                        <TextBlock Text="{Binding Title}"></TextBlock>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Title}"></TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                            <TextBlock FontSize="10" Text="Udlånt til:"></TextBlock>
+                            <TextBlock FontSize="10" Text="{Binding Loaner}"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -30,9 +36,10 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition Height="60"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
@@ -42,6 +49,8 @@
                 <TextBlock Grid.Row="1" Grid.Column="1" FontStyle="Italic" Text="{Binding SelectedBook.Author}"></TextBlock>
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="ISBN: "></TextBlock>
                 <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding SelectedBook.Isbn}"></TextBlock>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Loaner, Mode=TwoWay}"></TextBox>
+                <Button Grid.Row="3" Grid.Column="0" Content="Udlån bog" Command="{Binding LoanBookCommand}"></Button>
 
             </Grid>
         </StackPanel>

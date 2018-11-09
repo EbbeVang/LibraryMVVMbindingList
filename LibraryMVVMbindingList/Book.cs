@@ -11,6 +11,7 @@ namespace LibraryMVVMbindingList
         private string _isbn;
         private string _author;
         private string _title;
+        private string _loaner;
 
         public Book(String isbn, string author, string title)
         {
@@ -35,6 +36,12 @@ namespace LibraryMVVMbindingList
         {
             get { return _title; }
             set { _title = value; }
+        }
+
+        public string Loaner
+        {
+            get { return _loaner; }
+            set { _loaner = value; }
         }
     }
 }

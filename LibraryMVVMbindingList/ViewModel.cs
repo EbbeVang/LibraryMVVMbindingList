@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using GalaSoft.MvvmLight.Command;
+using LibraryMVVMbindingList.Annotations;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using LibraryMVVMbindingList.Annotations;
 
 namespace LibraryMVVMbindingList
 {
     class ViewModel : INotifyPropertyChanged
     {
+
+        private string _loaner;
+
         // her huskes den valgte bog :-)
         private Book _selectedBook;
 
@@ -24,6 +24,10 @@ namespace LibraryMVVMbindingList
             _books.Add(new Book("2345-76543-123", "Lars trOlesen", "Frokost på nye måder"));
             _books.Add(new Book("123456-76543-432", "Lasse Coinbæk", "Bitcoin i Vipperød"));
             _books.Add(new Book("12345-765432-12345", "Michael Kærgården", "Den der smører godt, kører godt - Glæden ved at CYKLE"));
+
+            LoanBookCommand = new RelayCommand(
+                addLoanertoSelectedBook);
+
         }
 
         public Book SelectedBook
@@ -40,6 +44,29 @@ namespace LibraryMVVMbindingList
         {
             get { return _books; }
             set { _books = value; }
+        }
+
+        public string Loaner
+        {
+            get { return _loaner; }
+            set
+            {
+                _loaner = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public RelayCommand LoanBookCommand
+        {
+            get;
+            private set;
+        }
+
+        private void addLoanertoSelectedBook()
+        {
+            Debug.WriteLine("add loaner");
+            _selectedBook.Loaner = _loaner;
+            OnPropertyChanged("SelectedBook");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
