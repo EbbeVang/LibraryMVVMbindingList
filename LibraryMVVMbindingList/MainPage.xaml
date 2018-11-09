@@ -23,7 +23,7 @@
                             <TextBlock Text="{Binding Title}"></TextBlock>
                             <StackPanel Orientation="Horizontal">
                             <TextBlock FontSize="10" Text="Udlånt til:"></TextBlock>
-                            <TextBlock FontSize="10" Text="{Binding Loaner}"></TextBlock>
+                            <TextBlock FontSize="10" Text="{Binding Loaner, Mode=TwoWay}"></TextBlock>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>

@@ -65,8 +65,11 @@ namespace LibraryMVVMbindingList
         private void addLoanertoSelectedBook()
         {
             Debug.WriteLine("add loaner");
-            _selectedBook.Loaner = _loaner;
-            OnPropertyChanged("SelectedBook");
+            //Debug.WriteLine("Loaner: " + Loaner);
+            //Debug.WriteLine("SelectedBook_: "+ SelectedBook.Title);
+            Debug.WriteLine(SelectedBook);
+            SelectedBook.Loaner = Loaner;
+            //OnPropertyChanged("SelectedBook");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
